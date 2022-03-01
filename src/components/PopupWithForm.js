@@ -1,17 +1,17 @@
 import React from 'react';
 
-export default function PopupWithForm(props) {
+export default function PopupWithForm(form) {
   return (
     <>
 
-      <div className={`popup popup_${props.name} ${props.isOpen ? "popup_opened" : ""}`}>
+      <div className={`popup popup_${form.name} ${form.isOpen ? "popup_opened" : ""}`}>
         <div className="popup__overlay"></div>
         <div className="popup__container">
-          <button className="button button_popup_close" type="button" onClick={props.onClose}></button>
-          <form className="form" name={props.name} noValidate>
+          <button className="button button_popup_close" type="button" onClick={form.onClose}></button>
+          <form className="form" name={form.name} noValidate>
             <fieldset className="form__container">
               <legend className="form__title">
-                {props.title}
+                {form.title}
               </legend>
               <input className="form__input" name="name-edit_input" id="name-edit" type="text" placeholder="Имя" minLength="2"
                 maxLength="40" required />

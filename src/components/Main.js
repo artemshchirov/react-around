@@ -5,7 +5,8 @@ import api from '../utils/api';
 export default function Main({
   onEditProfile,
   onAddPlace,
-  onEditAvatar
+  onEditAvatar,
+  onCardClick,
 }) {
 
   const [userName, setUserName] = React.useState("");
@@ -41,7 +42,10 @@ export default function Main({
       </section>
       <section className="cards section content__section">
       {cards.map(card => (
-        <Card card={card}/>
+        <Card 
+          card={card}
+          onCardClick={onCardClick}
+        />
       ))}
       </section>
     </main>
