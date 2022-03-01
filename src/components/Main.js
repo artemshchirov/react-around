@@ -1,52 +1,49 @@
-import avatar from '../images/avatar.jpg';
+import React from 'react';
+import Card from './Card';
+import api from '../utils/api';
 
-function handleEditAvatarClick() {
-  const buttonEditAvatar = document.querySelector('.popup_edit-avatar');
-  buttonEditAvatar.classList.add('popup_opened');
-}
+export default function Main({
+  onEditProfile,
+  onAddPlace,
+  onEditAvatar
+}) {
 
-function handleEditProfileClick() {
-  const buttonEditProfile = document.querySelector('.popup_profile-edit');
-  buttonEditProfile.classList.add('popup_opened');
-}
+  const [userName, setUserName] = React.useState("");
+  const [userDesciption, setUserDesciption] = React.useState("");
+  const [userAvatar, setUserAvatar] = React.useState("");
+  const [cards, setCards] = React.useState([]);
 
-function handleAddCardClick() {
-  const buttonAddCard = document.querySelector('.popup_card-add');
-  buttonAddCard.classList.add('popup_opened');
-}
+  React.useEffect(() => {
+    Promise.all([api.getUserInfo(), api.getInitialCards()])
+      .then(([{ name, description, avatar }, initialCards]) => {
+        setUserName(name);
+        setUserDesciption(description)
+        setUserAvatar(avatar)
+        setCards(initialCards);
+      })
+      .catch(err => console.log(`Ошибка при загрузке данных пользователя и создании всех карточек: ${err}`));
+  }, [])
 
-export default function Main() {
   return (
     <main className="content page__content">
       <section className="profile section content__section">
-        <div className="profile__avatar-container" onClick={handleEditAvatarClick}>
-          <img src={avatar} alt="Изображение профиля пользователя" className="profile__avatar" />
+        <div className="profile__avatar-container" onClick={onEditAvatar}>
+          <img src={userAvatar} alt="Изображение профиля пользователя" className="profile__avatar" />
         </div>
         <div className="profile__content">
           <div className="profile__name-btn-container">
-            <h1 className="profile__name">Жак-Ив Кусто</h1>
-            <button className="button button_profile_edit" type="button" onClick={handleEditProfileClick}></button>
+            <h1 className="profile__name">{userName}</h1>
+            <button className="button button_profile_edit" type="button" onClick={onEditProfile}></button>
           </div>
-          <p className="profile__about">Исследователь океана</p>
+          <p className="profile__about">{userDesciption}</p>
         </div>
-        <button className="button button_profile_add" type="button" onClick={handleAddCardClick}></button>
+        <button className="button button_profile_add" type="button" onClick={onAddPlace}></button>
       </section>
       <section className="cards section content__section">
-        <template id="card">
-          <article className="card">
-            <img src="#" alt="" className="card__image" />
-            <button className="button button_card_delete"></button>
-            <div className="card__title-like-container">
-              <h2 className="card__title"></h2>
-              <div className="card__like-count-container">
-                <button className="button button_like" type=" button"></button>
-                <p className="card__like-count">0</p>
-              </div>
-            </div>
-          </article>
-        </template>
+      {cards.map(card => (
+        <Card card={card}/>
+      ))}
       </section>
     </main>
-
   );
 }
