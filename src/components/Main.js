@@ -41,12 +41,12 @@ export default function Main({
         <button className="button button_profile_add" type="button" onClick={onAddPlace}></button>
       </section>
       <section className="cards section content__section">
-        {cards.map(card => (
-          <Card key={card.id}
-            card={card}
-            onCardClick={onCardClick}
-          />
-        ))}
+      {cards.map(card => (
+        <Card 
+          card={card}
+          onCardClick={onCardClick}
+        />
+      ))}
       </section>
     </main>
   );

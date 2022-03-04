@@ -46,6 +46,7 @@ export default function App() {
           onCardClick={handleCardClick}
         />
         <Footer />
+
         <PopupWithForm
           isOpen={isProfilePopupOpen}
           name="profile-edit"
@@ -64,6 +65,7 @@ export default function App() {
           title="Обновить аватар"
           onClose={closeAllPopups}
         />
+
         <ImagePopup
           card={selectedCard}
           onClose={closeAllPopups}

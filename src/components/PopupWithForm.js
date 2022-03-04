@@ -3,8 +3,9 @@ import React from 'react';
 export default function PopupWithForm(form) {
   return (
     <>
+
       <div className={`popup popup_${form.name} ${form.isOpen ? "popup_opened" : ""}`}>
-        <div className="popup__overlay" onClick={form.onClose}></div>
+        <div className="popup__overlay"></div>
         <div className="popup__container">
           <button className="button button_popup_close" type="button" onClick={form.onClose}></button>
           <form className="form" name={form.name} noValidate>
@@ -25,6 +26,7 @@ export default function PopupWithForm(form) {
           </form>
         </div>
       </div>
+
     </>
   )
 }
