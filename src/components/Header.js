@@ -1,4 +1,4 @@
-import logo from '../images/logo-mesto.svg';
+import logo from "../images/logo-mesto.svg";
 
 export default function Header() {
   return (

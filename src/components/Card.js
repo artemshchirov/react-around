@@ -1,14 +1,18 @@
 import React from "react";
 
-export default function Card({card, onCardClick}) {
-  
+export default function Card({ card, onCardClick }) {
   function handleClick() {
     onCardClick(card);
-  }  
+  }
 
   return (
-    <article key={card.id} className="card">
-      <img src={card.link} alt={card.name} className="card__image" onClick={handleClick} />
+    <article className="card">
+      <img
+        src={card.link}
+        alt={card.name}
+        className="card__image"
+        onClick={handleClick}
+      />
       <button className="button button_card_delete"></button>
       <div className="card__title-like-container">
         <h2 className="card__title">{card.name}</h2>
@@ -19,4 +23,4 @@ export default function Card({card, onCardClick}) {
       </div>
     </article>
   );
-} 
+}
