@@ -1,6 +1,11 @@
 import React from "react";
+import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
 export default function Card({ card, onCardClick }) {
+  const currentUser = React.useContext(CurrentUserContext);
+  const isOwn = card.owner._id === currentUser._id;
+  const isLiked = card.likes.some((i) => i._id === currentUser._id);
+  const cardLikeButtonClassName = isLiked ? "button_like_isLiked" : "";
   function handleClick() {
     onCardClick(card);
   }
@@ -13,11 +18,13 @@ export default function Card({ card, onCardClick }) {
         className="card__image"
         onClick={handleClick}
       />
-      <button className="button button_card_delete"></button>
+      {isOwn && <button className="button button_card_delete"></button>}
       <div className="card__title-like-container">
         <h2 className="card__title">{card.name}</h2>
         <div className="card__like-count-container">
-          <button className="button button_like" type=" button"></button>
+          <button
+            className={`button button_like ${cardLikeButtonClassName}`}
+          ></button>
           <p className="card__like-count">{card.likes.length}</p>
         </div>
       </div>

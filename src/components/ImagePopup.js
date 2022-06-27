@@ -7,7 +7,7 @@ export default function ImagePopup({ card, onClose }) {
           className="button button_popup_close"
           onClick={onClose}
         ></button>
-        <img src={card.link} alt="" className="popup__image" />
+        <img src={card.link} alt={card.name} className="popup__image" />
         <figcaption className="popup__image-title">{card.name}</figcaption>
       </figure>
     </div>
