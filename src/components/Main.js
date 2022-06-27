@@ -12,6 +12,19 @@ export default function Main({
   const currentUser = React.useContext(CurrentUserContext);
   const [cards, setCards] = React.useState([]);
 
+  function handleCardLike(card) {
+    const isLiked = card.likes.some((i) => i._id === currentUser._id);
+    api.changeLikeCardStatus(card._id, !isLiked).then((newCard) => {
+      setCards((state) => state.map((c) => (c._id === card._id ? newCard : c)));
+    });
+  }
+
+  function handleCardDelete(card) {
+    console.log("handleCardDelete: ", card);
+    // запрос в api
+    // обновить стейт cards с помощью метода filter: создайте копию массива, исключив из него удалённую карточку.
+  }
+
   React.useEffect(() => {
     api
       .getInitialCards()
@@ -54,7 +67,13 @@ export default function Main({
       </section>
       <section className="cards section content__section">
         {cards.map((card) => (
-          <Card key={card._id} card={card} onCardClick={onCardClick} />
+          <Card
+            key={card._id}
+            card={card}
+            onCardClick={onCardClick}
+            onCardLike={handleCardLike}
+            onCardDelete={handleCardDelete}
+          />
         ))}
       </section>
     </main>

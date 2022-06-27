@@ -41,8 +41,8 @@ export default function App() {
   React.useEffect(() => {
     api
       .getUserInfo()
-      .then(({ name, about, avatar }) => {
-        setCurrentUser({ name, about, avatar });
+      .then(({ name, about, avatar, _id }) => {
+        setCurrentUser({ name, about, avatar, _id });
       })
       .catch((err) =>
         console.log(`Ошибка при загрузке данных пользователя: ${err}`)
