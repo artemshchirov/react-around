@@ -20,17 +20,18 @@ export default function Main({
   }
 
   function handleCardDelete(card) {
-    console.log("handleCardDelete: ", card);
-    // запрос в api
-    // обновить стейт cards с помощью метода filter: создайте копию массива, исключив из него удалённую карточку.
+    api
+      .deleteItem(card._id)
+      .then(setCards(cards.filter((c) => c._id !== card._id)))
+      .catch((err) =>
+        console.log(`Ошибка при удалении карточки пользователя: ${err}`)
+      );
   }
 
   React.useEffect(() => {
     api
       .getInitialCards()
-      .then((initialCards) => {
-        setCards(initialCards);
-      })
+      .then((initialCards) => setCards(initialCards))
       .catch((err) =>
         console.log(
           `Ошибка при загрузке данных пользователя и создании всех карточек: ${err}`

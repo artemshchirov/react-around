@@ -2,13 +2,14 @@ import React from "react";
 import Header from "./Header";
 import Main from "./Main";
 import Footer from "./Footer";
+import EditProfilePopup from "./EditProfilePopup";
 import PopupWithForm from "./PopupWithForm";
 import ImagePopup from "./ImagePopup";
 import api from "../utils/api";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
 export default function App() {
-  const [isProfilePopupOpen, setIsEditProfileOpen] = React.useState(false);
+  const [isEditProfilePopupOpen, setIsEditProfileOpen] = React.useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] =
     React.useState(false);
@@ -38,6 +39,16 @@ export default function App() {
     setSelectedCard(null);
   }
 
+  function handleUpdateUser(user) {
+    api
+      .setUserInfo(user)
+      .then(setCurrentUser(user))
+      .catch((err) =>
+        console.log(`Ошибка при обновлении name, about пользователя: ${err}`)
+      );
+    closeAllPopups();
+  }
+
   React.useEffect(() => {
     api
       .getUserInfo()
@@ -62,36 +73,16 @@ export default function App() {
           />
           <Footer />
 
-          <PopupWithForm
-            isOpen={isProfilePopupOpen}
-            name="profile-edit"
-            title="Редактировать профиль"
+          <EditProfilePopup
+            isOpen={isEditProfilePopupOpen}
             onClose={closeAllPopups}
-            buttonText="Сохранить"
-          >
-            <input
-              className="form__input"
-              name="name-edit_input"
-              id="name-edit"
-              type="text"
-              placeholder="Имя"
-              minLength="2"
-              maxLength="40"
-              required
-            />
-            <span id="name-edit-error" className="form__input-error"></span>
-            <input
-              className="form__input"
-              name="about-edit_input"
-              id="about-edit"
-              type="text"
-              placeholder="Профессия"
-              minLength="2"
-              maxLength="200"
-              required
-            />
-            <span id="about-edit-error" className="form__input-error"></span>
-          </PopupWithForm>
+            onUpdateUser={handleUpdateUser}
+          />
+
+          <isEditAvatarPopup
+            isOpen={isEditAvatarPopupOpen}
+            onClose={closeAllPopups}
+          />
 
           <PopupWithForm
             isOpen={isAddPlacePopupOpen}
@@ -120,24 +111,6 @@ export default function App() {
               required
             />
             <span id="link-card-error" className="form__input-error"></span>
-          </PopupWithForm>
-
-          <PopupWithForm
-            isOpen={isEditAvatarPopupOpen}
-            name="edit-avatar"
-            title="Обновить аватар"
-            onClose={closeAllPopups}
-            buttonText="Сохранить"
-          >
-            <input
-              className="form__input"
-              name="link-avatar_input"
-              id="link-avatar"
-              placeholder="Ссылка на картинку"
-              type="url"
-              required
-            />
-            <span id="link-avatar-error" className="form__input-error"></span>
           </PopupWithForm>
 
           {selectedCard && (
