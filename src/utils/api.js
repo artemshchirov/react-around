@@ -18,7 +18,7 @@ class Api {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        avatar: avatar,
+        avatar,
       }),
     }).then(this._handleResponse);
   }
@@ -39,8 +39,8 @@ class Api {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        name: name,
-        about: about,
+        name,
+        about,
       }),
     }).then(this._handleResponse);
   }
@@ -61,8 +61,8 @@ class Api {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        name: name,
-        link: link,
+        name,
+        link,
       }),
     }).then(this._handleResponse);
   }

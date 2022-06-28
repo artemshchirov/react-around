@@ -24,10 +24,7 @@ export default function PopupWithForm(props) {
             <fieldset className="form__container">
               <legend className="form__title">{props.title}</legend>
               {props.children}
-              <button
-                className="button button_form_submit button_submit-edit-profile"
-                type="submit"
-              >
+              <button className="button button_form_submit" type="submit">
                 {props.buttonText}
               </button>
             </fieldset>

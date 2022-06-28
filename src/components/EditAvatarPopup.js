@@ -1,14 +1,24 @@
 import React from "react";
 import PopupWithForm from "./PopupWithForm";
-// import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
-export default function EditAvatarPopup({isEditAvatarPopupOpen, closeAllPopups}) {
+export default function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar }) {
+  const avatarRef = React.useRef();
+
+  function handleSubmit(evt) {
+    evt.preventDefault();
+    onUpdateAvatar({
+      avatar: avatarRef.current.value,
+    });
+    avatarRef.current.value = "";
+  }
+
   return (
     <PopupWithForm
-      isOpen={isEditAvatarPopupOpen}
+      isOpen={isOpen}
       name="edit-avatar"
       title="Обновить аватар"
-      onClose={closeAllPopups}
+      onClose={onClose}
+      onSubmit={handleSubmit}
       buttonText="Сохранить"
     >
       <input
@@ -17,6 +27,7 @@ export default function EditAvatarPopup({isEditAvatarPopupOpen, closeAllPopups})
         id="link-avatar"
         placeholder="Ссылка на картинку"
         type="url"
+        ref={avatarRef}
         required
       />
       <span id="link-avatar-error" className="form__input-error"></span>

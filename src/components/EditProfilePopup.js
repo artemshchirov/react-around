@@ -45,6 +45,7 @@ export default function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
         placeholder="Имя"
         minLength="2"
         maxLength="40"
+        value={name || ''}
         onChange={handleChangeName}
         required
       />
@@ -57,6 +58,7 @@ export default function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
         placeholder="Профессия"
         minLength="2"
         maxLength="200"
+        value={description || ''}
         onChange={handleChangeDescription}
         required
       />
