@@ -1,6 +1,9 @@
 export default function ImagePopup({ card, onClose }) {
+  // Временно:
+  if (!card) return null;
+  //
   return (
-    <div className="popup popup_card-fullscreen popup_opened">
+    <div className={`popup popup_card-fullscreen" ${card && "popup_opened"}`}>
       <div className="popup__overlay" onClick={onClose}></div>
       <figure className="popup__figure">
         <button

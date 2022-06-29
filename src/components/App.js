@@ -1,4 +1,4 @@
-import React from "react";
+import { useEffect, useState } from "react";
 import Header from "./Header";
 import Main from "./Main";
 import Footer from "./Footer";
@@ -10,13 +10,12 @@ import api from "../utils/api";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
 export default function App() {
-  const [isEditProfilePopupOpen, setIsEditProfileOpen] = React.useState(false);
-  const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
-  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] =
-    React.useState(false);
-  const [selectedCard, setSelectedCard] = React.useState(null);
-  const [currentUser, setCurrentUser] = React.useState({});
-  const [cards, setCards] = React.useState([]);
+  const [isEditProfilePopupOpen, setIsEditProfileOpen] = useState(false);
+  const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
+  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
+  const [selectedCard, setSelectedCard] = useState(null);
+  const [currentUser, setCurrentUser] = useState({});
+  const [cards, setCards] = useState([]);
 
   function handleEditAvatarClick() {
     setIsEditAvatarPopupOpen(true);
@@ -77,9 +76,16 @@ export default function App() {
 
   function handleCardLike(card) {
     const isLiked = card.likes.some((i) => i._id === currentUser._id);
-    api.changeLikeCardStatus(card._id, !isLiked).then((newCard) => {
-      setCards((state) => state.map((c) => (c._id === card._id ? newCard : c)));
-    });
+    api
+      .changeLikeCardStatus(card._id, !isLiked)
+      .then((newCard) => {
+        setCards((state) =>
+          state.map((c) => (c._id === card._id ? newCard : c))
+        );
+      })
+      .catch((err) =>
+        console.log(`Ошибка при добавлении/удалении лайка: ${err}`)
+      );
   }
 
   function handleCardDelete(card) {
@@ -103,7 +109,7 @@ export default function App() {
       );
   }
 
-  React.useEffect(() => {
+  useEffect(() => {
     api
       .getUserInfo()
       .then(({ name, about, avatar, _id }) => {
@@ -156,9 +162,7 @@ export default function App() {
             onAddPlace={handleAddPlaceSubmit}
           />
 
-          {selectedCard && (
-            <ImagePopup card={selectedCard} onClose={closeAllPopups} />
-          )}
+          <ImagePopup card={selectedCard} onClose={closeAllPopups} />
         </CurrentUserContext.Provider>
       </div>
     </div>

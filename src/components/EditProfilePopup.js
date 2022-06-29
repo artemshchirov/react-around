@@ -1,11 +1,11 @@
-import React from "react";
+import { useEffect, useState, useContext } from "react";
 import PopupWithForm from "./PopupWithForm";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
 export default function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
-  const currentUser = React.useContext(CurrentUserContext);
-  const [name, setName] = React.useState("");
-  const [description, setDescription] = React.useState("");
+  const currentUser = useContext(CurrentUserContext);
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
 
   function handleChangeName(evt) {
     setName(evt.target.value);
@@ -23,10 +23,10 @@ export default function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
     });
   }
 
-  React.useEffect(() => {
+  useEffect(() => {
     setName(currentUser.name);
     setDescription(currentUser.about);
-  }, [currentUser]);
+  }, [currentUser, isOpen]);
 
   return (
     <PopupWithForm
@@ -45,7 +45,7 @@ export default function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
         placeholder="Имя"
         minLength="2"
         maxLength="40"
-        value={name || ''}
+        value={name || ""}
         onChange={handleChangeName}
         required
       />
@@ -58,7 +58,7 @@ export default function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
         placeholder="Профессия"
         minLength="2"
         maxLength="200"
-        value={description || ''}
+        value={description || ""}
         onChange={handleChangeDescription}
         required
       />
