@@ -1,6 +1,6 @@
 export default function ImagePopup({ card, onClose }) {
   // Временно:
-  if (!card) return null;
+  // if (!card) return null;
   //
   return (
     <div className={`popup popup_card-fullscreen" ${card && "popup_opened"}`}>
@@ -10,8 +10,14 @@ export default function ImagePopup({ card, onClose }) {
           className="button button_popup_close"
           onClick={onClose}
         ></button>
-        <img src={card.link} alt={card.name} className="popup__image" />
-        <figcaption className="popup__image-title">{card.name}</figcaption>
+        <img
+          src={card && card.link}
+          alt={card && card.name}
+          className="popup__image"
+        />
+        <figcaption className="popup__image-title">
+          {card && card.name}
+        </figcaption>
       </figure>
     </div>
   );
