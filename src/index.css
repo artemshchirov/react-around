@@ -62,3 +62,5 @@
 @import url(./blocks/form/__input/_type/form__input_type_error.css);
 @import url(./blocks/form/__input-error/form__input-error.css);
 @import url(./blocks/form/__input-error/_visible/form__input-error_visible.css);
+/* spinner */
+@import url(./blocks/spinner/spinner.css);
