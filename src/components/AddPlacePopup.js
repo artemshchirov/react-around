@@ -26,7 +26,7 @@ export default function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
   return (
     <PopupWithForm
       isOpen={isOpen}
-      name="card-add"
+      name="add-card"
       title="Новое место"
       onClose={onClose}
       onSubmit={handleSubmit}

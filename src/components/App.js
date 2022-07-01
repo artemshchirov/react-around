@@ -9,6 +9,7 @@ import ImagePopup from "./ImagePopup";
 import Spinner from "./Spinner";
 import api from "../utils/api";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
+import SubmitPopup from "./SubmitPopup";
 
 export default function App() {
   const [isEditProfilePopupOpen, setIsEditProfileOpen] = useState(false);
@@ -17,7 +18,10 @@ export default function App() {
   const [selectedCard, setSelectedCard] = useState(null);
   const [currentUser, setCurrentUser] = useState({});
   const [cards, setCards] = useState([]);
+
   const [isLoading, setIsLoading] = useState(false);
+  const [isSubmitPopupOpen, setIsSubmitPopupOpen] = useState(false);
+  const [currentCard, setCurrentCard] = useState({});
 
   function handleEditAvatarClick() {
     setIsEditAvatarPopupOpen(true);
@@ -31,6 +35,11 @@ export default function App() {
     setIsAddPlacePopupOpen(true);
   }
 
+  function handleSubmitDeleteClick(card) {
+    setIsSubmitPopupOpen(true);
+    setCurrentCard(card);
+  }
+
   function handleCardClick(card) {
     setSelectedCard(card);
   }
@@ -39,6 +48,7 @@ export default function App() {
     setIsEditAvatarPopupOpen(false);
     setIsEditProfileOpen(false);
     setIsAddPlacePopupOpen(false);
+    setIsSubmitPopupOpen(false);
     setSelectedCard(null);
   }
 
@@ -106,7 +116,10 @@ export default function App() {
     setIsLoading(true);
     api
       .deleteItem(card._id)
-      .then(setCards(cards.filter((c) => c._id !== card._id)))
+      .then((res) => {
+        setCards(cards.filter((c) => c._id !== card._id));
+        closeAllPopups();
+      })
       .catch((err) =>
         console.log(`Ошибка при удалении карточки пользователя: ${err}`)
       )
@@ -173,7 +186,7 @@ export default function App() {
               onCardClick={handleCardClick}
               cards={cards}
               onCardLike={handleCardLike}
-              onCardDelete={handleCardDelete}
+              onCardDelete={handleSubmitDeleteClick}
             />
           )}
           <Footer />
@@ -195,7 +208,12 @@ export default function App() {
             onClose={closeAllPopups}
             onAddPlace={handleAddPlaceSubmit}
           />
-
+          <SubmitPopup
+            isOpen={isSubmitPopupOpen}
+            onClose={closeAllPopups}
+            onSubmitDelete={handleCardDelete}
+            card={currentCard}
+          />
           <ImagePopup card={selectedCard} onClose={closeAllPopups} />
         </CurrentUserContext.Provider>
       </div>
