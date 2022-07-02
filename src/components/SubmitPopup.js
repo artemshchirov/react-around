@@ -1,7 +1,6 @@
 import PopupWithForm from "./PopupWithForm";
 
 export default function SubmitPopup({ isOpen, onClose, onSubmitDelete, card }) {
-  
   function handleSubmit(evt) {
     evt.preventDefault();
     onSubmitDelete(card);

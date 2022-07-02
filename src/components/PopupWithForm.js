@@ -19,7 +19,13 @@ export default function PopupWithForm(props) {
           <fieldset className="form__container">
             <legend className="form__title">{props.title}</legend>
             {props.children}
-            <button className="button button_form_submit" type="submit">
+            <button
+              className={`button button_form_submit ${
+                !props.buttonActive && "button_disabled"
+              }`}
+              type="submit"
+              disabled={!props.buttonActive}
+            >
               {props.buttonText}
             </button>
           </fieldset>

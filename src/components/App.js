@@ -52,6 +52,16 @@ export default function App() {
     setSelectedCard(null);
   }
 
+  function handleFormValidation(input, setInputValid, setInputErrorMessage) {
+    if (input.validity.valid) {
+      setInputValid(true);
+      setInputErrorMessage("");
+    } else {
+      setInputValid(false);
+      setInputErrorMessage(input.validationMessage);
+    }
+  }
+
   function handleUpdateUser({ name, about }) {
     setIsLoading(true);
     api
@@ -195,18 +205,21 @@ export default function App() {
             isOpen={isEditProfilePopupOpen}
             onClose={closeAllPopups}
             onUpdateUser={handleUpdateUser}
+            validateForm={handleFormValidation}
           />
 
           <EditAvatarPopup
             isOpen={isEditAvatarPopupOpen}
             onClose={closeAllPopups}
             onUpdateAvatar={handleUpdateAvatar}
+            validateForm={handleFormValidation}
           />
 
           <AddPlacePopup
             isOpen={isAddPlacePopupOpen}
             onClose={closeAllPopups}
             onAddPlace={handleAddPlaceSubmit}
+            validateForm={handleFormValidation}
           />
           <SubmitPopup
             isOpen={isSubmitPopupOpen}
