@@ -1,25 +1,28 @@
-# mesto-react
+# Around-React
 
-*Редактируемая галерея фотографий с возможностью поставить им лайк*
-[Ссылка на проект](https://artemschirov.github.io/mesto/index.html)
+## Project Link
+https://github.com/artemschirov/mesto-react
 
-## Сайт о личностях + их фотографии
+## Project Description
+*This project uses React to recreate a [previous](https://github.com/artemschirov/mesto) JavaScript project.*
 
-* Красивые картинки
-* Особенные места
-* Кастомизация профиля
-* Захватывающие дух кадры
-* Возможность заработать ЛАЙКИ!!!
+It is a web page showing a user's information and photos they have uploaded from around the US. Images can be deleted, liked, and new images added.
 
-## Адаптивность
+Technologies and Techniques Used
+This web page was created with HTML, CSS, and JavaScript, JSX, and the React framework. It has been made adaptive to different screen sizes.
 
-* 320px
-* 1024px+
+### Some of the skills used are:
 
-## TODO
-
-1. Добавить новые картинки
-
-2. Сохранение изменений профиля
-
-3. Лайки
+* Basic JSX
+* JSX lists and events
+* Imperative and declarative approaches to programming
+* Functional and Class Components
+* Creating a new project in React
+* Project structures
+* Debugging and React DevTools
+* Hooks and effect dependencies
+* Lifting state
+* Global state
+* Creating and subscribing to a context
+* Working with forms
+* Refs
