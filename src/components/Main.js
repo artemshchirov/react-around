@@ -1,6 +1,6 @@
-import { useContext } from "react";
-import Card from "./Card";
-import { CurrentUserContext } from "../contexts/CurrentUserContext";
+import { useContext } from 'react';
+import Card from './Card';
+import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
 export default function Main({
   onEditProfile,
@@ -19,7 +19,7 @@ export default function Main({
         <div className="profile__avatar-container" onClick={onEditAvatar}>
           <img
             src={currentUser.avatar}
-            alt="Изображение профиля пользователя"
+            alt="User pic"
             className="profile__avatar"
           />
         </div>

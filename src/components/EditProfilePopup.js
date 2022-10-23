@@ -1,6 +1,6 @@
-import { useEffect, useState, useContext, useRef } from "react";
-import PopupWithForm from "./PopupWithForm";
-import { CurrentUserContext } from "../contexts/CurrentUserContext";
+import { useEffect, useState, useContext } from 'react';
+import PopupWithForm from './PopupWithForm';
+import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
 export default function EditProfilePopup({
   isOpen,
@@ -10,14 +10,14 @@ export default function EditProfilePopup({
 }) {
   const currentUser = useContext(CurrentUserContext);
 
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
+  const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
 
   const [isNameValid, setIsNameValid] = useState(true);
   const [isDescriptionValid, setIsDescriptionValid] = useState(true);
 
-  const [nameErrorMessage, setNameErrorMessage] = useState("");
-  const [descriptionErrorMessage, setDescriptionErrorMessage] = useState("");
+  const [nameErrorMessage, setNameErrorMessage] = useState('');
+  const [descriptionErrorMessage, setDescriptionErrorMessage] = useState('');
 
   function handleChangeName(evt) {
     setName(evt.target.value);
@@ -42,58 +42,58 @@ export default function EditProfilePopup({
     setDescription(currentUser.about);
     setIsNameValid(true);
     setIsDescriptionValid(true);
-    setNameErrorMessage("");
-    setDescriptionErrorMessage("");
+    setNameErrorMessage('');
+    setDescriptionErrorMessage('');
   }, [currentUser, isOpen]);
 
   return (
     <PopupWithForm
       isOpen={isOpen}
       name="profile-edit"
-      title="Редактировать профиль"
+      title="Edit profile"
       onClose={onClose}
       onSubmit={handleSubmit}
-      buttonText="Сохранить"
+      buttonText="Save"
       buttonActive={isNameValid && isDescriptionValid}
     >
       <input
-        className={`form__input ${!isNameValid && "form__input_type_error"}`}
+        className={`form__input ${!isNameValid && 'form__input_type_error'}`}
         name="name-edit_input"
         id="name-edit"
         type="text"
-        placeholder="Имя"
+        placeholder="Username"
         minLength="2"
         maxLength="40"
-        value={name || ""}
+        value={name || ''}
         onChange={handleChangeName}
         required
       />
       <span
         id="name-edit-error"
         className={`form__input-error ${
-          !isNameValid && "form__input-error_visible"
+          !isNameValid && 'form__input-error_visible'
         }`}
       >
         {!isNameValid && nameErrorMessage}
       </span>
       <input
         className={`form__input ${
-          !isDescriptionValid && "form__input_type_error"
+          !isDescriptionValid && 'form__input_type_error'
         }`}
         name="about-edit_input"
         id="about-edit"
         type="text"
-        placeholder="Профессия"
+        placeholder="About"
         minLength="2"
         maxLength="200"
-        value={description || ""}
+        value={description || ''}
         onChange={handleChangeDescription}
         required
       />
       <span
         id="about-edit-error"
         className={`form__input-error ${
-          !isDescriptionValid && "form__input-error_visible"
+          !isDescriptionValid && 'form__input-error_visible'
         }`}
       >
         {!isDescriptionValid && descriptionErrorMessage}

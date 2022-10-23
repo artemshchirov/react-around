@@ -1,6 +1,7 @@
 .button {
-    padding: 0;
-    border: none;
-    cursor: pointer;
-    transition: opacity .1s;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.1s;
+  text-decoration: none;
 }

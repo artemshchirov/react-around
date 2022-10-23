@@ -1,10 +1,10 @@
-import logo from "../images/logo-mesto.svg";
+import logo from '../images/logo-around.svg';
 
 export default function Header() {
   return (
     <header className="header page__header">
-      <a href="https://artemschirov.github.io/mesto/index.html">
-        <img src={logo} alt="Логотип 'Место'" className="logo" />
+      <a href="https://github.com/artemshchirov" target="_blank">
+        <img src={logo} alt="logo 'Around'" className="logo button" />
       </a>
     </header>
   );

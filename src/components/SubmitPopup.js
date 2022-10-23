@@ -1,4 +1,4 @@
-import PopupWithForm from "./PopupWithForm";
+import PopupWithForm from './PopupWithForm';
 
 export default function SubmitPopup({ isOpen, onClose, onSubmitDelete, card }) {
   function handleSubmit(evt) {
@@ -10,10 +10,10 @@ export default function SubmitPopup({ isOpen, onClose, onSubmitDelete, card }) {
     <PopupWithForm
       isOpen={isOpen}
       name="card-delete"
-      title="Вы уверены?"
+      title="Are you sure?"
       onClose={onClose}
       onSubmit={handleSubmit}
-      buttonText="Да"
+      buttonText="Yes"
     ></PopupWithForm>
   );
 }

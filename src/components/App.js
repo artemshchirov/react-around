@@ -1,15 +1,15 @@
-import { useEffect, useState } from "react";
-import Header from "./Header";
-import Main from "./Main";
-import Footer from "./Footer";
-import EditProfilePopup from "./EditProfilePopup";
-import EditAvatarPopup from "./EditAvatarPopup";
-import AddPlacePopup from "./AddPlacePopup";
-import ImagePopup from "./ImagePopup";
-import Spinner from "./Spinner";
-import api from "../utils/api";
-import { CurrentUserContext } from "../contexts/CurrentUserContext";
-import SubmitPopup from "./SubmitPopup";
+import { useEffect, useState } from 'react';
+import Header from './Header';
+import Main from './Main';
+import Footer from './Footer';
+import EditProfilePopup from './EditProfilePopup';
+import EditAvatarPopup from './EditAvatarPopup';
+import AddPlacePopup from './AddPlacePopup';
+import ImagePopup from './ImagePopup';
+import Spinner from './Spinner';
+import api from '../utils/api';
+import { CurrentUserContext } from '../contexts/CurrentUserContext';
+import SubmitPopup from './SubmitPopup';
 
 export default function App() {
   const [isEditProfilePopupOpen, setIsEditProfileOpen] = useState(false);
@@ -55,7 +55,7 @@ export default function App() {
   function handleFormValidation(input, setInputValid, setInputErrorMessage) {
     if (input.validity.valid) {
       setInputValid(true);
-      setInputErrorMessage("");
+      setInputErrorMessage('');
     } else {
       setInputValid(false);
       setInputErrorMessage(input.validationMessage);
@@ -75,9 +75,7 @@ export default function App() {
         });
         closeAllPopups();
       })
-      .catch((err) =>
-        console.log(`Ошибка при обновлении name, about пользователя: ${err}`)
-      )
+      .catch((err) => console.err(`Error update user name, about: ${err}`))
       .finally(() => {
         setIsLoading(false);
       });
@@ -97,7 +95,7 @@ export default function App() {
         closeAllPopups();
       })
       .catch((err) => {
-        console.log(`Ошибка при обновлении аватара пользователя: ${err}`);
+        console.err(`Error update profile image: ${err}`);
       })
       .finally(() => {
         setIsLoading(false);
@@ -114,9 +112,7 @@ export default function App() {
           state.map((c) => (c._id === card._id ? newCard : c))
         );
       })
-      .catch((err) =>
-        console.log(`Ошибка при добавлении/удалении лайка: ${err}`)
-      )
+      .catch((err) => console.err(`Error add/remove like: ${err}`))
       .finally(() => {
         setIsLoading(false);
       });
@@ -130,9 +126,7 @@ export default function App() {
         setCards(cards.filter((c) => c._id !== card._id));
         closeAllPopups();
       })
-      .catch((err) =>
-        console.log(`Ошибка при удалении карточки пользователя: ${err}`)
-      )
+      .catch((err) => console.err(`Error remove card: ${err}`))
       .finally(() => {
         setIsLoading(false);
       });
@@ -146,9 +140,7 @@ export default function App() {
         setCards([newCard, ...cards]);
         closeAllPopups();
       })
-      .catch((err) =>
-        console.log(`Ошибка при создании новой карточки пользователя: ${err}`)
-      )
+      .catch((err) => console.err(`Error add new card: ${err}`))
       .finally(() => {
         setIsLoading(false);
       });
@@ -161,9 +153,7 @@ export default function App() {
       .then(({ name, about, avatar, _id }) => {
         setCurrentUser({ name, about, avatar, _id });
       })
-      .catch((err) =>
-        console.log(`Ошибка при загрузке данных пользователя: ${err}`)
-      )
+      .catch((err) => console.err(`Error loading user info: ${err}`))
       .finally(() => {
         setIsLoading(false);
       });
@@ -171,11 +161,7 @@ export default function App() {
     api
       .getInitialCards()
       .then((initialCards) => setCards(initialCards))
-      .catch((err) =>
-        console.log(
-          `Ошибка при загрузке данных пользователя и создании всех карточек: ${err}`
-        )
-      )
+      .catch((err) => console.err(`Error loading user info and cards: ${err}`))
       .finally(() => {
         setIsLoading(false);
       });

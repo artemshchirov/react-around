@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState } from "react";
-import PopupWithForm from "./PopupWithForm";
+import { useEffect, useRef, useState } from 'react';
+import PopupWithForm from './PopupWithForm';
 
 export default function EditAvatarPopup({
   isOpen,
@@ -7,12 +7,11 @@ export default function EditAvatarPopup({
   onUpdateAvatar,
   validateForm,
 }) {
-  
   const avatarRef = useRef();
 
   const [isAvatarUrlValid, setIsAvatarUrlValid] = useState(false);
 
-  const [avatarUrlErrorMessage, setAvatarUrlErrorMessage] = useState("");
+  const [avatarUrlErrorMessage, setAvatarUrlErrorMessage] = useState('');
 
   function handleChangeAvatarUrl(evt) {
     validateForm(evt.target, setIsAvatarUrlValid, setAvatarUrlErrorMessage);
@@ -26,8 +25,7 @@ export default function EditAvatarPopup({
   }
 
   useEffect(() => {
-    console.log(avatarRef.current);
-    avatarRef.current.value = "";
+    avatarRef.current.value = '';
     validateForm(
       avatarRef.current,
       setIsAvatarUrlValid,
@@ -39,19 +37,19 @@ export default function EditAvatarPopup({
     <PopupWithForm
       isOpen={isOpen}
       name="edit-avatar"
-      title="Обновить аватар"
+      title="Update profile image"
       onClose={onClose}
       onSubmit={handleSubmit}
-      buttonText="Сохранить"
+      buttonText="Save"
       buttonActive={isAvatarUrlValid}
     >
       <input
         className={`form__input ${
-          !isAvatarUrlValid && "form__input_type_error"
+          !isAvatarUrlValid && 'form__input_type_error'
         }`}
         name="link-avatar_input"
         id="link-avatar"
-        placeholder="Ссылка на картинку"
+        placeholder="Link to image"
         type="url"
         ref={avatarRef}
         onChange={handleChangeAvatarUrl}
@@ -60,7 +58,7 @@ export default function EditAvatarPopup({
       <span
         id="link-avatar-error"
         className={`form__input-error ${
-          !isAvatarUrlValid && "form__input-error_visible"
+          !isAvatarUrlValid && 'form__input-error_visible'
         }`}
       >
         {!isAvatarUrlValid && avatarUrlErrorMessage}

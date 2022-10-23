@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
-import PopupWithForm from "./PopupWithForm";
+import { useEffect, useState } from 'react';
+import PopupWithForm from './PopupWithForm';
 
 export default function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
-  const [name, setName] = useState("");
-  const [link, setLink] = useState("");
+  const [name, setName] = useState('');
+  const [link, setLink] = useState('');
 
   function handleChangeName(evt) {
     setName(evt.target.value);
@@ -19,25 +19,25 @@ export default function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
   }
 
   useEffect(() => {
-    setName("");
-    setLink("");
+    setName('');
+    setLink('');
   }, [isOpen]);
 
   return (
     <PopupWithForm
       isOpen={isOpen}
       name="add-card"
-      title="Новое место"
+      title="New place"
       onClose={onClose}
       onSubmit={handleSubmit}
-      buttonText="Создать"
+      buttonText="Create"
     >
       <input
         className="form__input"
         name="name-card_input"
         id="name-card"
         type="text"
-        placeholder="Название"
+        placeholder="Name"
         minLength="2"
         maxLength="30"
         value={name}
@@ -49,7 +49,7 @@ export default function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
         className="form__input"
         name="link-card_input"
         id="link-card"
-        placeholder="Ссылка на картинку"
+        placeholder="Link to image"
         type="url"
         value={link}
         onChange={handleChangeLink}
