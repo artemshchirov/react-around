@@ -31,6 +31,7 @@ export default function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
       onClose={onClose}
       onSubmit={handleSubmit}
       buttonText="Create"
+      buttonActive={name && link}
     >
       <input
         className="form__input"
