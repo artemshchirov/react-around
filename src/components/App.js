@@ -75,7 +75,7 @@ export default function App() {
         });
         closeAllPopups();
       })
-      .catch((err) => console.err(`Error update user name, about: ${err}`))
+      .catch((err) => console.error(`Error update user name, about: ${err}`))
       .finally(() => {
         setIsLoading(false);
       });
@@ -95,7 +95,7 @@ export default function App() {
         closeAllPopups();
       })
       .catch((err) => {
-        console.err(`Error update profile image: ${err}`);
+        console.error(`Error update profile image: ${err}`);
       })
       .finally(() => {
         setIsLoading(false);
@@ -112,7 +112,7 @@ export default function App() {
           state.map((c) => (c._id === card._id ? newCard : c))
         );
       })
-      .catch((err) => console.err(`Error add/remove like: ${err}`))
+      .catch((err) => console.error(`Error add/remove like: ${err}`))
       .finally(() => {
         setIsLoading(false);
       });
@@ -126,7 +126,7 @@ export default function App() {
         setCards(cards.filter((c) => c._id !== card._id));
         closeAllPopups();
       })
-      .catch((err) => console.err(`Error remove card: ${err}`))
+      .catch((err) => console.error(`Error remove card: ${err}`))
       .finally(() => {
         setIsLoading(false);
       });
@@ -140,7 +140,7 @@ export default function App() {
         setCards([newCard, ...cards]);
         closeAllPopups();
       })
-      .catch((err) => console.err(`Error add new card: ${err}`))
+      .catch((err) => console.error(`Error add new card: ${err}`))
       .finally(() => {
         setIsLoading(false);
       });
@@ -153,7 +153,7 @@ export default function App() {
       .then(({ name, about, avatar, _id }) => {
         setCurrentUser({ name, about, avatar, _id });
       })
-      .catch((err) => console.err(`Error loading user info: ${err}`))
+      .catch((err) => console.error(`Error loading user info: ${err}`))
       .finally(() => {
         setIsLoading(false);
       });
@@ -161,7 +161,9 @@ export default function App() {
     api
       .getInitialCards()
       .then((initialCards) => setCards(initialCards))
-      .catch((err) => console.err(`Error loading user info and cards: ${err}`))
+      .catch((err) =>
+        console.error(`Error loading user info and cards: ${err}`)
+      )
       .finally(() => {
         setIsLoading(false);
       });
