@@ -5,6 +5,7 @@ export default function Footer() {
         className="footer__link button"
         href="https://github.com/artemshchirov"
         target="_blank"
+        rel="noreferrer"
       >
         <p className="footer__copyright">&copy; 2022 Ɐrtem Shchirov</p>
       </a>

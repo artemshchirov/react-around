@@ -1,8 +1,8 @@
-# Around
+# AROUND X REACT
 
 ## Have a look at the project on GitHub Pages
 
-<https://artemshchirov.github.io/around-react>
+<https://artemshchirov.github.io/react-around>
 
 ## Description
 
@@ -43,4 +43,4 @@ npm start
 
 ### Further improvements
 
-Updated version of this project using react and authentication + authorization ([link to the repository](https://github.com/artemshchirov/react-around-auth)) and the backend was written for it ([backend repository](https://github.com/artemshchirov/express-around)).
+Updated version of this project using react + authentication and authorization ([link to the repository](https://github.com/artemshchirov/react-around-auth)) and the backend was written for it ([backend repository](https://github.com/artemshchirov/express-around)).
